@@ -22,3 +22,21 @@ GLfloat	Point::z(void)
 {
 	return (this->_z);
 }
+
+Point	*Point::setX(GLfloat x)
+{
+	this->_x = x;
+	return (this);
+}
+
+Point	*Point::setY(GLfloat y)
+{
+	this->_y = y;
+	return (this);
+}
+
+Point	*Point::setZ(GLfloat z)
+{
+	this->_z = z;
+	return (this);
+}

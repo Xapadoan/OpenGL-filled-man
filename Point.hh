@@ -9,6 +9,9 @@ class	Point {
 		GLfloat	x(void);
 		GLfloat	y(void);
 		GLfloat	z(void);
+		Point		*setX(GLfloat x);
+		Point		*setY(GLfloat y);
+		Point		*setZ(GLfloat z);
 	private:
 		GLfloat	_x = 0.0f;
 		GLfloat	_y = 0.0f;
