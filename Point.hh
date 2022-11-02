@@ -1,3 +1,6 @@
+#ifndef POINT_HH
+#define POINT_HH
+
 #include <GL/glut.h>
 
 class	Point {
@@ -11,3 +14,5 @@ class	Point {
 		GLfloat	_y = 0.0f;
 		GLfloat	_z = 0.0f;
 };
+
+#endif

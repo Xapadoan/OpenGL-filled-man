@@ -1,10 +1,14 @@
 #include <GL/glut.h>
 #include "Head.hh"
 
+Head::Head(GLfloat x, GLfloat y, GLfloat z) :
+	_anchor(x, y, z)
+{
+}
+
 void	Head::render(void)
 {
-	glLoadIdentity();
-	glTranslatef(0.0f, 1.0f, -7.0f);
+	glTranslatef(this->_anchor.x(), this->_anchor.y(), this->_anchor.z());
 	glRotatef(this->_x_angle, 1.0f, 0.0f, 0.0f);
 	glRotatef(this->_y_angle, 0.0f, 1.0f, 0.0f);
 	glRotatef(this->_z_angle, 0.0f, 0.0f, 1.0f);
@@ -43,6 +47,7 @@ void	Head::render(void)
 	glVertex3f(0.1f, 0.3f, 0.1f);
 	glVertex3f(0.1f, 0.3f, -0.1f);
 
+	glColor3f(1.0f, 0.0f, 0.0f);
 	glVertex3f(-0.1f, 0.1f, 0.1f);
 	glVertex3f(0.1f, 0.1f, 0.1f);
 	glVertex3f(0.1f, 0.3f, 0.1f);
@@ -51,6 +56,7 @@ void	Head::render(void)
 	glVertex3f(0.1f, 0.3f, 0.1f);
 	glVertex3f(-0.1f, 0.3f, 0.1f);
 
+	glColor3f(0.0f, 1.0f, 0.0f);
 	glVertex3f(-0.1f, 0.1f, -0.1f);
 	glVertex3f(0.1f, 0.1f, -0.1f);
 	glVertex3f(0.1f, 0.3f, -0.1f);
@@ -75,6 +81,7 @@ void	Head::render(void)
 	glVertex3f(-0.1f, 0.3f, 0.1f);
 	glVertex3f(0.0f, 0.4f, 0.0f);
 	glEnd();
+	glTranslatef(-this->_anchor.x(), -this->_anchor.y(), -this->_anchor.z());
 }
 
 Head	*Head::setXAngle(GLfloat x)
