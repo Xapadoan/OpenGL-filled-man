@@ -1,5 +1,5 @@
 #include <GL/glut.h>
-#include <Point.hh>
+#include "Point.hh"
 
 Point::Point(GLfloat x, GLfloat y, GLfloat z) :
 	_x(x),
