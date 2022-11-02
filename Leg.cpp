@@ -1,8 +1,8 @@
 #include <GL/glut.h>
 #include "Leg.hh"
 
-Leg::Leg(GLfloat x, GLfloat y, GLfloat z, bool side) :
-	_anchor(x, y, z),
+Leg::Leg(RelativePoint &anchor, bool side) :
+	_anchor(anchor),
 	_side(side)
 {
 }

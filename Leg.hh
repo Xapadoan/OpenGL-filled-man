@@ -2,17 +2,17 @@
 #define LEG_HH
 
 #include <GL/glut.h>
-#include "Point.hh"
+#include "RelativePoint.hh"
 
 class Leg {
 	public:
-		Leg(GLfloat x, GLfloat y, GLfloat z, bool side);
+		Leg(RelativePoint &base, bool side);
 		void	render();
 		Leg		*setYAngle(GLfloat y);
 	private:
-		GLfloat	_y_angle = 0.0f;
-		Point		_anchor;
-		bool		_side = false;
+		GLfloat					_y_angle = 0.0f;
+		RelativePoint		&_anchor;
+		bool						_side = false;
 };
 
 #endif

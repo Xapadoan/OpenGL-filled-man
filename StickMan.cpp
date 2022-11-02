@@ -2,12 +2,12 @@
 #include "StickMan.hh"
 
 StickMan::StickMan() :
-	_head(0.0f, 0.55f, 0.0f),
-	_torso(0.0f, 0.0f, 0.0f),
-	_leftArm(0.25f, 0.45f, 0.0f, true),
-	_rightArm(-0.25f, 0.45f, 0.0f, false),
-	_leftLeg(0.02f, -0.45f, 0.0f, true),
-	_rightLeg(-0.02f, -0.45f, 0.0f, false)
+	_torso(0.0f, 0.0f, -1.0f),
+	_head(_torso.headAnchor()),
+	_leftArm(_torso.leftArmAnchor(), true),
+	_rightArm(_torso.rightArmAnchor(), false),
+	_leftLeg(_torso.leftLegAnchor(), true),
+	_rightLeg(_torso.rightLegAnchor(), false)
 {
 }
 

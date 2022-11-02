@@ -1,8 +1,8 @@
 #include <GL/glut.h>
 #include "Head.hh"
 
-Head::Head(GLfloat x, GLfloat y, GLfloat z) :
-	_anchor(x, y, z)
+Head::Head(RelativePoint &anchor) :
+	_anchor(anchor)
 {
 }
 

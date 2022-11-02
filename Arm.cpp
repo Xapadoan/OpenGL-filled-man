@@ -1,8 +1,8 @@
 #include <GL/glut.h>
 #include "Arm.hh"
 
-Arm::Arm(GLfloat x, GLfloat y, GLfloat z, bool side) :
-	_anchor(x, y, z),
+Arm::Arm(RelativePoint &anchor, bool side) :
+	_anchor(anchor),
 	_side(side)
 {
 }
