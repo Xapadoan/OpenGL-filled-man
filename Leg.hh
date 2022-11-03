@@ -4,18 +4,21 @@
 #include <GL/glut.h>
 #include "RelativePoint.hh"
 #include "Articulation.hh"
+#include "InnerArticulation.hh"
 
 class Leg {
 	public:
 		Leg(RelativePoint &base, bool side);
-		void	render();
+		void	render(void);
+		void	renderTight(void);
+		void	renderMollet(void);
 		Leg		*setXAngle(GLfloat x);
 		Leg		*setYAngle(GLfloat y);
 		Leg		*setZAngle(GLfloat z);
 	private:
-		GLfloat					_y_angle = 0.0f;
-		Articulation		_articulation;
-		bool						_side = false;
+		Articulation			_articulation;
+		InnerArticulation	_knee;
+		bool							_side = false;
 };
 
 #endif
