@@ -2,15 +2,17 @@
 #include "Arm.hh"
 
 Arm::Arm(RelativePoint &anchor, bool side) :
-	_anchor(anchor),
+	_shoulder(anchor, {180.0f, 45.0f, 180.0f}, {-180.0f, -45.0f, -180.0f}),
 	_side(side)
 {
 }
 
 void	Arm::render(void)
 {
-	glTranslatef(this->_anchor.x(), this->_anchor.y(), this->_anchor.z());
-	glRotatef(this->_y_angle, 0.0f, 1.0f, 0.0f);
+	glTranslatef(this->_shoulder.x(), this->_shoulder.y(), this->_shoulder.z());
+	glRotatef(this->_shoulder.rx(), 1.0f, 0.0f, 0.0f);
+	glRotatef(this->_shoulder.ry(), 0.0f, 1.0f, 0.0f);
+	glRotatef(this->_shoulder.rz(), 0.0f, 0.0f, 1.0f);
 
 	glBegin(GL_TRIANGLES);
 	glColor3f(0.0f, 1.0f, 0.0f);
@@ -117,11 +119,26 @@ void	Arm::render(void)
 		glColor3f(0.0f, 1.0f, 0.0f);
 	}
 	glEnd();
-	glTranslatef(-this->_anchor.x(), -this->_anchor.y(), -this->_anchor.z());
+	glRotatef(-this->_shoulder.rz(), 0.0f, 0.0f, 1.0f);
+	glRotatef(-this->_shoulder.ry(), 0.0f, 1.0f, 0.0f);
+	glRotatef(-this->_shoulder.rx(), 1.0f, 0.0f, 0.0f);
+	glTranslatef(-this->_shoulder.x(), -this->_shoulder.y(), -this->_shoulder.z());
+}
+
+Arm	*Arm::setXAngle(GLfloat x)
+{
+	this->_shoulder.setRx(x);
+	return (this);
 }
 
 Arm	*Arm::setYAngle(GLfloat y)
 {
-	this->_y_angle = y;
+	this->_shoulder.setRy(y);
+	return (this);
+}
+
+Arm	*Arm::setZAngle(GLfloat z)
+{
+	this->_shoulder.setRz(z);
 	return (this);
 }

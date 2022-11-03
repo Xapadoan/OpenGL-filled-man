@@ -1,8 +1,8 @@
 EXEC=run
 CC=g++
 LD=-lGL -lGLU -lglut -lm
-SOURCES=main.cpp StickMan.cpp Head.cpp Arm.cpp Torso.cpp Leg.cpp Point.cpp RelativePoint.cpp
-HEADERS=StickMan.hh Head.hh Arm.hh Torso.hh Leg.hh Point.hh RelativePoint.hh
+SOURCES=main.cpp StickMan.cpp Head.cpp Arm.cpp Torso.cpp Leg.cpp Point.cpp RelativePoint.cpp Articulation.cpp
+HEADERS=StickMan.hh Head.hh Arm.hh Torso.hh Leg.hh Point.hh RelativePoint.hh Articulation.hh
 
 $(EXEC): $(SOURCES) $(HEADERS)
 	$(CC) -o $@ $(SOURCES) $(HEADERS) $(LD)

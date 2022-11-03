@@ -14,7 +14,6 @@ Torso::Torso(GLfloat x, GLfloat y, GLfloat z) :
 void	Torso::render(void)
 {
 	glTranslatef(this->_anchor.x(), this->_anchor.y(), this->_anchor.z());
-	glRotatef(this->_y_angle, 0.0f, 1.0f, 0.0f);
 
 	glBegin(GL_TRIANGLES);
 	glColor3f(0.0f, 1.0f, 0.0f);
