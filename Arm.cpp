@@ -123,7 +123,6 @@ void	Arm::render(void)
 	glRotatef(-this->_shoulder.ry(), 0.0f, 1.0f, 0.0f);
 	glRotatef(-this->_shoulder.rx(), 1.0f, 0.0f, 0.0f);
 	glTranslatef(-this->_shoulder.x(), -this->_shoulder.y(), -this->_shoulder.z());
-	this->setZAngle(this->_shoulder.rz() + 0.1f);
 }
 
 Arm	*Arm::setXAngle(GLfloat x)

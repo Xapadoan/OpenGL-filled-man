@@ -123,7 +123,6 @@ void	Leg::render(void)
 	glRotatef(-this->_articulation.ry(), 0.0f, 1.0f, 0.0f);
 	glRotatef(-this->_articulation.rx(), 1.0f, 0.0f, 0.0f);
 	glTranslatef(-this->_articulation.x(), -this->_articulation.y(), -this->_articulation.z());
-	this->setXAngle(this->_articulation.rx() + 0.1f);
 }
 
 Leg	*Leg::setXAngle(GLfloat rx)
