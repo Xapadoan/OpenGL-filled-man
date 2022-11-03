@@ -3,6 +3,7 @@
 
 #include <GL/glut.h>
 #include "RelativePoint.hh"
+#include "Articulation.hh"
 
 class Head {
 	public:
@@ -12,10 +13,10 @@ class Head {
 		Head	*setXAngle(GLfloat x);
 		Head	*setZAngle(GLfloat z);
 	private:
-		GLfloat 				_y_angle = 0.0f;
-		GLfloat 				_x_angle = 0.0f;
-		GLfloat 				_z_angle = 0.0f;
-		RelativePoint		&_anchor;
+		GLfloat 			_y_angle = 0.0f;
+		GLfloat 			_x_angle = 0.0f;
+		GLfloat 			_z_angle = 0.0f;
+		Articulation	_articulation;
 };
 
 #endif

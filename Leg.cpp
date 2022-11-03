@@ -2,15 +2,17 @@
 #include "Leg.hh"
 
 Leg::Leg(RelativePoint &anchor, bool side) :
-	_anchor(anchor),
+	_articulation(anchor, {90.0f, 45.0f, 45.0f}, {-90.0f, -45.0f, -45.0f}),
 	_side(side)
 {
 }
 
 void	Leg::render(void)
 {
-	glTranslatef(this->_anchor.x(), this->_anchor.y(), this->_anchor.z());
-	glRotatef(this->_y_angle, 0.0f, 1.0f, 0.0f);
+	glTranslatef(this->_articulation.x(), this->_articulation.y(), this->_articulation.z());
+	glRotatef(this->_articulation.rx(), 1.0f, 0.0f, 0.0f);
+	glRotatef(this->_articulation.ry(), 0.0f, 1.0f, 0.0f);
+	glRotatef(this->_articulation.rz(), 0.0f, 0.0f, 1.0f);
 
 	glBegin(GL_TRIANGLES);
 	if (this->_side == 1) {
@@ -117,11 +119,27 @@ void	Leg::render(void)
 		glColor3f(0.0f, 1.0f, 0.0f);
 	}
 	glEnd();
-	glTranslatef(-this->_anchor.x(), -this->_anchor.y(), -this->_anchor.z());
+	glRotatef(-this->_articulation.rz(), 0.0f, 0.0f, 1.0f);
+	glRotatef(-this->_articulation.ry(), 0.0f, 1.0f, 0.0f);
+	glRotatef(-this->_articulation.rx(), 1.0f, 0.0f, 0.0f);
+	glTranslatef(-this->_articulation.x(), -this->_articulation.y(), -this->_articulation.z());
+	this->setXAngle(this->_articulation.rx() + 0.1f);
 }
 
-Leg	*Leg::setYAngle(GLfloat y)
+Leg	*Leg::setXAngle(GLfloat rx)
 {
-	this->_y_angle = y;
+	this->_articulation.setRx(rx);
+	return (this);
+}
+
+Leg	*Leg::setYAngle(GLfloat ry)
+{
+	this->_articulation.setRy(ry);
+	return (this);
+}
+
+Leg	*Leg::setZAngle(GLfloat rz)
+{
+	this->_articulation.setRz(rz);
 	return (this);
 }
