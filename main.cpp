@@ -2,18 +2,21 @@
 #include <iostream>
 
 #include "StickMan.hh"
+#include "Map.hh"
 
 #define TITLE "Stick Man"
 #define MILLIS 15
 
 bool	dir = false;
 StickMan	man;
+Map				map;
 
 void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 
+	map.render();
 	man.render();
 
 	glutSwapBuffers();
