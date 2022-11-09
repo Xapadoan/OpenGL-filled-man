@@ -261,8 +261,6 @@ void	Arm::render(void)
 
 	this->renderForearm();
 
-	this->_elbow.setDrx(this->_elbow.drx() - 0.1f);
-
 	glRotatef(-this->_elbow.drz(), 0.0f, 0.0f, 1.0f);
 	glRotatef(-this->_elbow.dry(), 0.0f, 1.0f, 0.0f);
 	glRotatef(-this->_elbow.drx(), 1.0f, 0.0f, 0.0f);

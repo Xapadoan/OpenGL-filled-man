@@ -4,10 +4,8 @@
 #include "StickMan.hh"
 
 #define TITLE "Stick Man"
-#define DANGLE 0.2f
 #define MILLIS 15
 
-GLfloat angle = 0.0f;
 bool	dir = false;
 StickMan	man;
 
@@ -15,11 +13,10 @@ void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
-	man.setYAngle(angle);
-	man.render();
-	glutSwapBuffers();
 
-	angle += DANGLE;
+	man.render();
+
+	glutSwapBuffers();
 }
 
 void reshape(GLsizei width, GLsizei height)
@@ -50,6 +47,27 @@ void	initGL(void)
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 }
 
+void	regularKeyFunc(unsigned char key, int x, int y)
+{
+	std::cout << "You Pressed: " << key << "\n";
+	std::cout << "Mouse Location: (" << x << ", " << y << ")\n";
+}
+
+void	specialKeyFunc(int key, int x, int y)
+{
+	switch(key)
+	{
+		case (GLUT_KEY_LEFT):
+			man.setRy(man.ry() - 0.2f);
+			break;
+		case (GLUT_KEY_RIGHT):
+			man.setRy(man.ry() + 0.2f);
+			break;
+		default:
+			break;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
@@ -60,6 +78,8 @@ int	main(int argc, char **argv)
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutTimerFunc(0, timer, 0);
+	glutKeyboardFunc(regularKeyFunc);
+	glutSpecialFunc(specialKeyFunc);
 	initGL();
 	glutMainLoop();
 	return (0);

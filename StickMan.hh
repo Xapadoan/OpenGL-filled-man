@@ -12,10 +12,11 @@ class StickMan
 {
 	public:
 		StickMan();
-		void	render(void);
-		StickMan	*setYAngle(GLfloat y);
+		void			render(void);
+		StickMan	*setRy(GLfloat y);
+		GLfloat		ry(void);
 	private:
-		GLfloat _y_angle = 0.0f;
+		GLfloat _ry = 0.0f;
 		Head	_head;
 		Torso	_torso;
 		Arm		_leftArm;
