@@ -24,6 +24,7 @@ void	StickMan::render(void)
 	this->_leftLeg.render();
 	this->_rightLeg.render();
 	glRotatef(-this->_ry, 0.0f, 1.0f, 0.0f);
+	glTranslatef(0.0f, 0.0f, 7.0f);
 }
 
 StickMan	*StickMan::setRy(GLfloat y)
