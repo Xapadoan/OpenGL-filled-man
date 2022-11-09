@@ -7,7 +7,7 @@ Torso::Torso(GLfloat x, GLfloat y, GLfloat z) :
 	_left_arm_anchor(_anchor, 0.25f, 0.45f, 0.0f),
 	_right_arm_anchor(_anchor, -0.25f, 0.45f, 0.0f),
 	_left_leg_anchor(_anchor, 0.02f, -0.45f, 0.0f),
-	_right_leg_anchor(_anchor, 0.0f, -0.45f, 0.0f)
+	_right_leg_anchor(_anchor, -0.02f, -0.45f, 0.0f)
 {
 }
 
