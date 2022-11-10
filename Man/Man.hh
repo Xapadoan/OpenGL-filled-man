@@ -1,5 +1,5 @@
-#ifndef STICKMAN_HH
-#define STICKMAN_HH
+#ifndef MAN_HH
+#define MAN_HH
 
 #include <GL/glut.h>
 
@@ -8,12 +8,12 @@
 #include "Arm.hh"
 #include "Leg.hh"
 
-class StickMan
+class Man
 {
 	public:
-		StickMan();
+		Man();
 		void			render(void);
-		StickMan	*setRy(GLfloat y);
+		Man	*setRy(GLfloat y);
 		GLfloat		ry(void);
 	private:
 		GLfloat _ry = 0.0f;
