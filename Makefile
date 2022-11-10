@@ -1,9 +1,10 @@
 EXEC=run
 CC=g++
-LD=-lGL -lGLU -lglut -lm
-SOURCES=main.cpp StickMan.cpp Head.cpp Arm.cpp Torso.cpp Leg.cpp Point.cpp RelativePoint.cpp Articulation.cpp InnerArticulation.cpp Map.cpp
-HEADERS=StickMan.hh Head.hh Arm.hh Torso.hh Leg.hh Point.hh RelativePoint.hh Articulation.hh InnerArticulation.hh Map.hh
-OBJECTS=main.o StickMan.o Head.o Arm.o Torso.o Leg.o Point.o RelativePoint.o Articulation.o InnerArticulation.o Map.o
+LD=-lGL -lGLU -lglut -lm -iquote Man -iquote Geometry -iquote Map
+OBJECTS=main.o\
+	Man/Man.o Man/Head.o Man/Articulation.o Man/Torso.o Man/Arm.o Man/Leg.o Man/InnerArticulation.o\
+	Geometry/Point.o Geometry/RelativePoint.o\
+	Map/Map.o
 
 $(EXEC): $(OBJECTS)
 	@echo "Compiling Executable"
@@ -11,11 +12,37 @@ $(EXEC): $(OBJECTS)
 
 clean:
 	@echo "Cleaning Up"
-	@rm -f *.o
+	@rm -f *.o Map/*.o Man/*.o Geometry/*.o
 	@rm -f $(EXEC)
 
 re: clean $(EXEC)
 
-%.o: %.cpp
-	@echo "Compiling $<"
-	@$(CC) -o $@ -c $^ $(LD)
+# MAIN DIR
+main.o: main.cpp main.hh
+	@echo "Compiling $@"
+	@$(CC) -o $@ -c $< $(LD)
+
+# MAN DIR
+Man/Man.o: Man/Man.cpp Man/Man.hh
+Man/Head.o: Man/Head.cpp Man/Head.hh
+Man/Articulation.o: Man/Articulation.cpp Man/Articulation.hh
+Man/Torso.o: Man/Torso.cpp Man/Torso.hh
+Man/Arm.o: Man/Arm.cpp Man/Arm.hh
+Man/Leg.o: Man/Leg.cpp Man/Leg.hh
+Man/Torso.o: Man/Torso.cpp Man/Torso.hh
+%.o: %.cpp %.hh
+	@echo "Compiling $@"
+	@$(CC) -o $@ -c $< $(LD)
+
+# GEOMETRY DIR
+Geometry/Point.o: Geometry/Point.cpp Geometry/Point.hh
+Geometry/RelativePoint.o: Geometry/RelativePoint.cpp Geometry/RelativePoint.hh
+%.o: %.cpp %.hh
+	@echo "Compiling $@"
+	@$(CC) -o $@ -c $< $(LD)
+
+# MAP DIR
+Map/Map.o: Map/Map.cpp Map/Map.hh
+%.o: %.cpp %.hh
+	@echo "Compiling $@"
+	@$(CC) -o $@ -c $< $(LD)

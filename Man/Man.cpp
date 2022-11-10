@@ -1,7 +1,7 @@
 #include <GL/glut.h>
-#include "StickMan.hh"
+#include "Man.hh"
 
-StickMan::StickMan() :
+Man::Man() :
 	_torso(0.0f, 0.0f, 0.0f),
 	_head(_torso.headAnchor()),
 	_leftArm(_torso.leftArmAnchor(), true),
@@ -12,7 +12,7 @@ StickMan::StickMan() :
 {
 }
 
-void	StickMan::render(void)
+void	Man::render(void)
 {
 	glLoadIdentity();
 	glTranslatef(0.0f, 0.0f, -7.0f);
@@ -27,13 +27,13 @@ void	StickMan::render(void)
 	glTranslatef(0.0f, 0.0f, 7.0f);
 }
 
-StickMan	*StickMan::setRy(GLfloat y)
+Man	*Man::setRy(GLfloat y)
 {
 	this->_ry = y;
 	return (this);
 }
 
-GLfloat	StickMan::ry(void)
+GLfloat	Man::ry(void)
 {
 	return (this->_ry);
 }

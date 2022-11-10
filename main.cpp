@@ -1,14 +1,9 @@
-#include <GL/glut.h>
 #include <iostream>
 
-#include "StickMan.hh"
-#include "Map.hh"
-
-#define TITLE "Stick Man"
-#define MILLIS 15
+#include "main.hh"
 
 bool	dir = false;
-StickMan	man;
+Man	man;
 Map				map;
 
 void display()
