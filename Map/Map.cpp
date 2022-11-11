@@ -22,7 +22,7 @@ void	Map::render()
 {
 	int i = 0;
 
-	glTranslatef(0.0f, -1.45f, -7.0f);
+	glTranslatef(0.0f, -1.45f, 0.0f);
 
 	glTranslatef(0.0f, 0.0f, -2.0f);
 	while (i < 20) {
@@ -61,6 +61,6 @@ void	Map::render()
 	}
 	glTranslatef(0.0f, 0.0f, -2.0f);
 
-	glTranslatef(0.0f, 1.45f, 7.0f);
+	glTranslatef(0.0f, 1.45f, 0.0f);
 
 }

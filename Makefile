@@ -1,10 +1,12 @@
 EXEC=run
 CC=g++
-LD=-lGL -lGLU -lglut -lm -iquote Man -iquote Geometry -iquote Map
+LD=-lGL -lGLU -lglut -lm -iquote Man -iquote Geometry -iquote Map -iquote Camera -iquote Controls
 OBJECTS=main.o\
 	Man/Man.o Man/Head.o Man/Articulation.o Man/Torso.o Man/Arm.o Man/Leg.o Man/InnerArticulation.o\
 	Geometry/Point.o Geometry/RelativePoint.o\
-	Map/Map.o
+	Map/Map.o\
+	Camera/Camera.o\
+	Controls/Mouse.o
 
 $(EXEC): $(OBJECTS)
 	@echo "Compiling Executable"
@@ -43,6 +45,18 @@ Geometry/RelativePoint.o: Geometry/RelativePoint.cpp Geometry/RelativePoint.hh
 
 # MAP DIR
 Map/Map.o: Map/Map.cpp Map/Map.hh
+%.o: %.cpp %.hh
+	@echo "Compiling $@"
+	@$(CC) -o $@ -c $< $(LD)
+
+# CAMERA DIR
+Camera/Camera.o: Camera/Camera.cpp Camera/Camera.hh
+%.o: %.cpp %.hh
+	@echo "Compiling $@"
+	@$(CC) -o $@ -c $< $(LD)
+
+# CONTROLS DIR
+Controls/Mouse.o: Controls/Mouse.cpp Controls/Mouse.hh
 %.o: %.cpp %.hh
 	@echo "Compiling $@"
 	@$(CC) -o $@ -c $< $(LD)
