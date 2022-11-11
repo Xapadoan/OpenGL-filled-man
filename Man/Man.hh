@@ -7,14 +7,17 @@
 #include "Torso.hh"
 #include "Arm.hh"
 #include "Leg.hh"
+#include "Point.hh"
 
 class Man
 {
 	public:
 		Man();
-		void			render(void);
-		Man	*setRy(GLfloat y);
-		GLfloat		ry(void);
+		void		render(void);
+		Man			*setRy(GLfloat y);
+		GLfloat	ry(void);
+		Man			*setPosition(GLfloat x, GLfloat y, GLfloat z);
+		Point		&position(void);
 	private:
 		GLfloat _ry = 0.0f;
 		Head	_head;
@@ -23,6 +26,7 @@ class Man
 		Arm		_rightArm;
 		Leg		_leftLeg;
 		Leg		_rightLeg;
+		Point	_position;
 
 		void	renderRightLeg(void);
 		void	renderLeftLeg(void);

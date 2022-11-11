@@ -2,17 +2,27 @@
 
 #include "main.hh"
 
-bool	dir = false;
-Man	man;
+bool			dir = false;
+Man				man;
 Map				map;
+Camera		camera(man.position(), 0.0f, 0.0f, -7.0f);
+Mouse			mouse;
 
 void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 
-	map.render();
+	glLoadIdentity();
+	glTranslatef(camera.position().x(), camera.position().y(), camera.position().z());
+	glTranslatef(camera.lookAt().x(), camera.lookAt().y(), camera.lookAt().z());
+	glRotatef(camera.rx(), 1.0f, 0.0f, 0.0f);
+	glRotatef(camera.ry(), 0.0f, 1.0f, 0.0f);
+	glRotatef(camera.rz(), 0.0f, 0.0f, 1.0f);
+	glTranslatef(-camera.lookAt().x(), -camera.lookAt().y(), -camera.lookAt().z());
+
 	man.render();
+	map.render();
 
 	glutSwapBuffers();
 }
@@ -61,9 +71,53 @@ void	specialKeyFunc(int key, int x, int y)
 		case (GLUT_KEY_RIGHT):
 			man.setRy(man.ry() + 0.2f);
 			break;
+		case (GLUT_KEY_UP):
+			man.setPosition(man.position().x(), man.position().y(), man.position().z() + 0.5f);
+			camera.move(0.0f, 0.0f, -0.5f);
+			break;
+		case (GLUT_KEY_DOWN):
+			man.setPosition(man.position().x(), man.position().y(), man.position().z() - 0.5f);
+			camera.move(0.0f, 0.0f, 0.5f);
+			break;
 		default:
 			break;
 	}
+}
+
+void	rotateCamera(int x, int y)
+{
+	camera.setRx(camera.rx() + y);
+	camera.setRy(camera.ry() + x);
+}
+
+void	mouseMotionFunc(int x, int y)
+{
+	int	dx = mouse.x() - x;
+	int	dy = mouse.y() - y;
+	mouse.setX(x);
+	mouse.setY(y);
+	if (mouse.rightButtonState() == GLUT_DOWN)
+	{
+		rotateCamera(dx, dy);
+	}
+}
+
+void	mouseFunc(int button, int state, int x, int y)
+{
+	switch (button)
+	{
+		case (GLUT_RIGHT_BUTTON):
+			mouse.setRightButtonState(state);
+			break;
+		default:
+			break;
+	}
+}
+
+void	mousePassiveFunc(int x, int y)
+{
+	mouse.setX(x);
+	mouse.setY(y);
 }
 
 int	main(int argc, char **argv)
@@ -78,6 +132,9 @@ int	main(int argc, char **argv)
 	glutTimerFunc(0, timer, 0);
 	glutKeyboardFunc(regularKeyFunc);
 	glutSpecialFunc(specialKeyFunc);
+	glutMotionFunc(mouseMotionFunc);
+	glutPassiveMotionFunc(mousePassiveFunc);
+	glutMouseFunc(mouseFunc);
 	initGL();
 	glutMainLoop();
 	return (0);
