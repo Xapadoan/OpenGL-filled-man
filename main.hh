@@ -7,6 +7,7 @@
 #include "Man.hh"
 #include "Camera.hh"
 #include "Mouse.hh"
+#include "Point.hh"
 
 #define TITLE "Man"
 #define MILLIS 15
