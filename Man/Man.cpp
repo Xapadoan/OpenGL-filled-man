@@ -50,3 +50,13 @@ Point	&Man::position(void)
 {
 	return (this->_position);
 }
+
+Man		*Man::move(GLfloat dx, GLfloat dy, GLfloat dz, Camera &camera)
+{
+	GLfloat	ry_rad = this->_ry * 3.14159 / 180;
+	GLfloat	realDz = cos(ry_rad) * dz + sin(ry_rad) * dx;
+	GLfloat	realDx = sin(ry_rad) * dz - cos(ry_rad) * dx;
+	this->setPosition(this->_position.x() + realDx, this->_position.y() + dy, this->_position.z() + realDz);
+	camera.move(-realDx, dy, -realDz);
+	return (this);
+}

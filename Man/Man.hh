@@ -2,12 +2,14 @@
 #define MAN_HH
 
 #include <GL/glut.h>
+#include <cmath>
 
 #include "Head.hh"
 #include "Torso.hh"
 #include "Arm.hh"
 #include "Leg.hh"
 #include "Point.hh"
+#include "Camera.hh"
 
 class Man
 {
@@ -16,7 +18,7 @@ class Man
 		void		render(void);
 		Man			*setRy(GLfloat y);
 		GLfloat	ry(void);
-		Man			*setPosition(GLfloat x, GLfloat y, GLfloat z);
+		Man			*move(GLfloat dx, GLfloat dy, GLfloat dz, Camera &camera);
 		Point		&position(void);
 	private:
 		GLfloat _ry = 0.0f;
@@ -32,6 +34,7 @@ class Man
 		void	renderLeftLeg(void);
 		void	renderRightArm(void);
 		void	renderLeftArm(void);
+		Man		*setPosition(GLfloat x, GLfloat y, GLfloat z);
 };
 
 #endif

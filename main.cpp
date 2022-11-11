@@ -1,6 +1,5 @@
-#include <iostream>
-
 #include "main.hh"
+#include <iostream>
 
 bool			dir = false;
 Man				man;
@@ -57,8 +56,23 @@ void	initGL(void)
 
 void	regularKeyFunc(unsigned char key, int x, int y)
 {
-	std::cout << "You Pressed: " << key << "\n";
-	std::cout << "Mouse Location: (" << x << ", " << y << ")\n";
+	switch (key)
+	{
+		case ('w'):
+			man.move(0.0f, 0.0f, 0.5f, camera);
+			break;
+		case ('s'):
+			man.move(0.0f, 0.0f, -0.5f, camera);
+			break;
+		case ('d'):
+			man.move(-0.5f, 0.0f, 0.0f, camera);
+			break;
+		case ('a'):
+			man.move(0.5f, 0.0f, 0.0f, camera);
+			break;
+		default:
+			break;
+	}
 }
 
 void	specialKeyFunc(int key, int x, int y)
@@ -66,18 +80,10 @@ void	specialKeyFunc(int key, int x, int y)
 	switch(key)
 	{
 		case (GLUT_KEY_LEFT):
-			man.setRy(man.ry() - 0.2f);
+			man.setRy(man.ry() - 1.0f);
 			break;
 		case (GLUT_KEY_RIGHT):
-			man.setRy(man.ry() + 0.2f);
-			break;
-		case (GLUT_KEY_UP):
-			man.setPosition(man.position().x(), man.position().y(), man.position().z() + 0.5f);
-			camera.move(0.0f, 0.0f, -0.5f);
-			break;
-		case (GLUT_KEY_DOWN):
-			man.setPosition(man.position().x(), man.position().y(), man.position().z() - 0.5f);
-			camera.move(0.0f, 0.0f, 0.5f);
+			man.setRy(man.ry() + 1.0f);
 			break;
 		default:
 			break;
